@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-webapp
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: simple-webapp
+    spec:
+      containers:
+      - name: simple-webapp
+        image: traoredev/flask-webapp
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PROVIDER
+            value: Gruntwork
+  selector:
+    matchLabels:
+      app: simple-webapp
